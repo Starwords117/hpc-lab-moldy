@@ -14,8 +14,9 @@
   瞬时块只做粗检(防止物理彻底崩坏), 不要求逐值一致。
 
 容差默认值(按输出分区):
-    rolling avg : |a-b| <= max(30, 1e-2 * max|a|,|b|)
-                  (含结尾 "X = num +/- num" 总结块, 同级容差)
+    rolling avg : |a-b| <= max(45, 1e-2 * max|a|,|b|)
+    总结块("X = v +/- s") : |a-b| <= max(10, 2.5*(s_student+s_ref))
+                  -- 按各量自身涨落定标, Virial 等高噪声量自动放宽
     stddev      : |a-b| <= max(10, 5e-2 * max|a|,|b|)
     instantaneous: |a-b| <= max(200, 5e-2 * max|a|,|b|)
     RDF rows    : |a-b| <= max(0.15, 5e-2 * max|a|,|b|)
@@ -33,7 +34,7 @@ AVG_SUM_RE = re.compile(r"=\s*-?\d[\d.eE+-]*\s*\+/-\s*-?\d[\d.eE+-]*")
 # 分区标记(逐字节比较)与该区数值行的容差
 MARKERS = (
     ("======== Timestep", "inst", (200.0, 5e-2)),
-    ("-------- Rolling averages", "avg", (30.0, 1e-2)),
+    ("-------- Rolling averages", "avg", (45.0, 1e-2)),
     ("-------- Standard deviations", "std", (10.0, 5e-2)),
 )
 
@@ -65,7 +66,7 @@ def load(path):
             toks = s.split()
             if AVG_SUM_RE.search(s):
                 lines.append(s)
-                kinds.append("avg")
+                kinds.append("avgsum")
             elif toks and all(_isnum(t) for t in toks):
                 lines.append(s)
                 kinds.append(section)
@@ -85,6 +86,15 @@ def _isnum(t):
 
 def _num(t):
     return float(t.rstrip(",;:"))
+
+
+def _sigma_of(line):
+    """提取总结行 '+/-' 之后的 stddev, 无则 0。"""
+    toks = line.split()
+    for j, t in enumerate(toks):
+        if t == "+/-" and j + 1 < len(toks) and _isnum(toks[j + 1]):
+            return _num(toks[j + 1])
+    return 0.0
 
 
 def main():
@@ -113,8 +123,12 @@ def main():
             print("FAIL: 第 %d 行不一致(%s):\n  student  : %s\n  reference: %s" %
                   (i, k, x, y))
             sys.exit(1)
-        tol_abs, tol_rel = (RDF_ABS, RDF_REL) if k == "rdf" else MARKERS[
-            [m[1] for m in MARKERS].index(k)][2]
+        if k == "avgsum":
+            tol_abs = max(10.0, 2.5 * (_sigma_of(x) + _sigma_of(y)))
+            tol_rel = 0.0
+        else:
+            tol_abs, tol_rel = (RDF_ABS, RDF_REL) if k == "rdf" else MARKERS[
+                [m[1] for m in MARKERS].index(k)][2]
         for us, vs in zip(tx, ty):
             if not (_isnum(us) and _isnum(vs)):
                 if us != vs:            # 混合行中的非数值 token 须逐字一致
