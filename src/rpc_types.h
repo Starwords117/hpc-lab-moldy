@@ -6,6 +6,14 @@
 
 #include <sys/types.h>          /* u_char..u_long (glibc, __USE_MISC) */
 
+/* MinGW/Windows 的 <sys/types.h> 不定义这些 BSD 类型, 兜底 typedef。 */
+#if defined(_WIN32) || defined(__MINGW32__)
+typedef unsigned char  u_char;
+typedef unsigned short u_short;
+typedef unsigned int   u_int;
+typedef unsigned long  u_long;
+#endif
+
 #ifndef TRUE
 #define TRUE  1
 #define FALSE 0
