@@ -1,0 +1,320 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+/* Define to use BSP parallel interface */
+#undef BSP
+
+/* Define to use old BSP parallel interface */
+#undef BSP0
+
+/* Define if you have the <bsp.h> header file. */
+#undef HAVE_BSP_H
+
+/* Define if you have the <bsp_level1.h> header file. */
+#undef HAVE_BSP_LEVEL1_H
+
+/* Define to compile for parallelism */
+#undef SPMD
+
+/* Define to use TCGMSG parallel interface */
+#undef TCGMSG
+
+/* Define if the times system call returns a status flag instead of the RT
+   clock */
+#undef TIMES_RETURNS_STATUS
+
+
+/* Define to use BSP parallel interface */
+#undef BSP
+
+/* Define to use old BSP parallel interface */
+#undef BSP0
+
+/* Define to 1 if you have the <bsp.h> header file. */
+#undef HAVE_BSP_H
+
+/* Define to 1 if you have the <bsp_level1.h> header file. */
+#undef HAVE_BSP_LEVEL1_H
+
+/* Define to 1 if you don't have 'vprintf' but do have '_doprnt.' */
+#undef HAVE_DOPRNT
+
+/* Define to 1 if you have the 'getopt' function. */
+#undef HAVE_GETOPT
+
+/* Define to 1 if you have the 'getrusage' function. */
+#undef HAVE_GETRUSAGE
+
+/* Define to 1 if you have the 'gettimeofday' function. */
+#undef HAVE_GETTIMEOFDAY
+
+/* Define to 1 if you have the 'globalexit' function. */
+#undef HAVE_GLOBALEXIT
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the 'bsp' library (-lbsp). */
+#undef HAVE_LIBBSP
+
+/* Define to 1 if you have the 'memcpy' function. */
+#undef HAVE_MEMCPY
+
+/* Define to 1 if you have the 'memset' function. */
+#undef HAVE_MEMSET
+
+/* Define to 1 if you have the <minix/config.h> header file. */
+#undef HAVE_MINIX_CONFIG_H
+
+/* Define to 1 if you have the <mpi.h> header file. */
+#undef HAVE_MPI_H
+
+/* Define to 1 if you have the <mpp/shmem.h> header file. */
+#undef HAVE_MPP_SHMEM_H
+
+/* Define to 1 if you have the 'popen' function. */
+#undef HAVE_POPEN
+
+/* Define to 1 if you have the 'raise' function. */
+#undef HAVE_RAISE
+
+/* Define to 1 if you have the 'remove' function. */
+#undef HAVE_REMOVE
+
+/* Define to 1 if you have the <rpc/xdr.h> header file. */
+#undef HAVE_RPC_XDR_H
+
+/* Define to 1 if you have the 'sbreak' function. */
+#undef HAVE_SBREAK
+
+/* Define to 1 if you have the 'shmem_long_get' function. */
+#undef HAVE_SHMEM_LONG_GET
+
+/* Define to 1 if you have the <sndrcv.h> header file. */
+#undef HAVE_SNDRCV_H
+
+/* Define if compiler supports ANSI stdarg.h functionality */
+#undef HAVE_STDARG_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the 'strchr' function. */
+#undef HAVE_STRCHR
+
+/* Define to 1 if you have the 'strdup' function. */
+#undef HAVE_STRDUP
+
+/* Define to 1 if you have the 'strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define to 1 if you have the 'strftime' function. */
+#undef HAVE_STRFTIME
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the 'strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define to 1 if you have the 'strtol' function. */
+#undef HAVE_STRTOL
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/resource.h> header file. */
+#undef HAVE_SYS_RESOURCE_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/times.h> header file. */
+#undef HAVE_SYS_TIMES_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the 'times' function. */
+#undef HAVE_TIMES
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define if compiler supports pointers to void */
+#undef HAVE_VOID_PTRS
+
+/* Define to 1 if you have the 'vprintf' function. */
+#undef HAVE_VPRINTF
+
+/* Define to 1 if you have the <wchar.h> header file. */
+#undef HAVE_WCHAR_H
+
+/* Define if sun XDR routines are available */
+#undef HAVE_XDR_INT
+
+/* Define to use MPI parallel interface */
+#undef MPI
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define as the return type of signal handlers ('int' or 'void'). */
+#undef RETSIGTYPE
+
+/* Define to use Cray SHMEM parallel interface */
+#undef SHMEM
+
+/* The size of 'float', as computed by sizeof. */
+#undef SIZEOF_FLOAT
+
+/* The size of 'int', as computed by sizeof. */
+#undef SIZEOF_INT
+
+/* Define to compile for parallelism */
+#undef SPMD
+
+/* Define to 1 if all of the C89 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
+#undef STDC_HEADERS
+
+/* Define to use TCGMSG parallel interface */
+#undef TCGMSG
+
+/* Define if the times system call returns a status flag instead of the RT
+   clock */
+#undef TIMES_RETURNS_STATUS
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. This
+   macro is obsolete. */
+#undef TIME_WITH_SYS_TIME
+
+/* Enable extensions on AIX, Interix, z/OS.  */
+#ifndef _ALL_SOURCE
+# undef _ALL_SOURCE
+#endif
+/* Enable general extensions on macOS.  */
+#ifndef _DARWIN_C_SOURCE
+# undef _DARWIN_C_SOURCE
+#endif
+/* Enable general extensions on Solaris.  */
+#ifndef __EXTENSIONS__
+# undef __EXTENSIONS__
+#endif
+/* Enable GNU extensions on systems that have them.  */
+#ifndef _GNU_SOURCE
+# undef _GNU_SOURCE
+#endif
+/* Enable X/Open compliant socket functions that do not require linking
+   with -lxnet on HP-UX 11.11.  */
+#ifndef _HPUX_ALT_XOPEN_SOCKET_API
+# undef _HPUX_ALT_XOPEN_SOCKET_API
+#endif
+/* Identify the host operating system as Minix.
+   This macro does not affect the system headers' behavior.
+   A future release of Autoconf may stop defining this macro.  */
+#ifndef _MINIX
+# undef _MINIX
+#endif
+/* Enable general extensions on NetBSD.
+   Enable NetBSD compatibility extensions on Minix.  */
+#ifndef _NETBSD_SOURCE
+# undef _NETBSD_SOURCE
+#endif
+/* Enable OpenBSD compatibility extensions on NetBSD.
+   Oddly enough, this does nothing on OpenBSD.  */
+#ifndef _OPENBSD_SOURCE
+# undef _OPENBSD_SOURCE
+#endif
+/* Define to 1 if needed for POSIX-compatible behavior.  */
+#ifndef _POSIX_SOURCE
+# undef _POSIX_SOURCE
+#endif
+/* Define to 2 if needed for POSIX-compatible behavior.  */
+#ifndef _POSIX_1_SOURCE
+# undef _POSIX_1_SOURCE
+#endif
+/* Enable POSIX-compatible threading on Solaris.  */
+#ifndef _POSIX_PTHREAD_SEMANTICS
+# undef _POSIX_PTHREAD_SEMANTICS
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-5:2014.  */
+#ifndef __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+# undef __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-1:2014.  */
+#ifndef __STDC_WANT_IEC_60559_BFP_EXT__
+# undef __STDC_WANT_IEC_60559_BFP_EXT__
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-2:2015.  */
+#ifndef __STDC_WANT_IEC_60559_DFP_EXT__
+# undef __STDC_WANT_IEC_60559_DFP_EXT__
+#endif
+/* Enable extensions specified by C23 Annex F.  */
+#ifndef __STDC_WANT_IEC_60559_EXT__
+# undef __STDC_WANT_IEC_60559_EXT__
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-4:2015.  */
+#ifndef __STDC_WANT_IEC_60559_FUNCS_EXT__
+# undef __STDC_WANT_IEC_60559_FUNCS_EXT__
+#endif
+/* Enable extensions specified by C23 Annex H and ISO/IEC TS 18661-3:2015.  */
+#ifndef __STDC_WANT_IEC_60559_TYPES_EXT__
+# undef __STDC_WANT_IEC_60559_TYPES_EXT__
+#endif
+/* Enable extensions specified by ISO/IEC TR 24731-2:2010.  */
+#ifndef __STDC_WANT_LIB_EXT2__
+# undef __STDC_WANT_LIB_EXT2__
+#endif
+/* Enable extensions specified by ISO/IEC 24747:2009.  */
+#ifndef __STDC_WANT_MATH_SPEC_FUNCS__
+# undef __STDC_WANT_MATH_SPEC_FUNCS__
+#endif
+/* Enable extensions on HP NonStop.  */
+#ifndef _TANDEM_SOURCE
+# undef _TANDEM_SOURCE
+#endif
+/* Enable X/Open extensions.  Define to 500 only if necessary
+   to make mbstate_t available.  */
+#ifndef _XOPEN_SOURCE
+# undef _XOPEN_SOURCE
+#endif
+
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to empty if 'const' does not conform to ANSI C. */
+#undef const
+
+/* Define as 'unsigned int' if <stddef.h> doesn't define. */
+#undef size_t

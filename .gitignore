@@ -1,0 +1,35 @@
+# 构建产物
+src/*.o
+src/.deps/
+src/moldy
+src/msd
+src/mdshak
+src/mdavpos
+src/mdbond
+src/mdvaf
+src/moldyext
+src/dumpconv
+src/dumpext
+src/manalyze
+src/bdist
+src/ransub
+src/syswrite
+src/config.h
+src/config.log
+src/config.status
+src/stamp-h1
+src/Makefile
+Makefile
+autom4te.cache/
+aclocal.m4
+
+# 运行时文件与本地运行目录
+MDROLL
+MDREST
+MDDUMP
+MDBACKUP
+runs/
+bench_run_*.out
+bench_run_*.err
+cases/*/run.out
+cases/*/run.err

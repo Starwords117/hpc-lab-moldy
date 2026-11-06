@@ -1,0 +1,22 @@
+#
+# This sets up conditions at the triple point
+#
+sys-spec-file=argon_2048.in
+density=1.428
+temperature=84
+scale-interval=5
+scale-end=2500
+nsteps=80000
+seed=1234567
+print-interval=5000
+roll-interval=5000
+begin-average=43001
+average-interval=42500
+step=0.01
+subcell=2
+strict-cutoff=1
+cutoff=8.5125  #2.5 * sigma
+begin-rdf=43001
+rdf-interval=50
+rdf-out=42500
+
