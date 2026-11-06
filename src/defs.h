@@ -55,7 +55,7 @@ what you give them.   Help stamp out software-hoarding!  */
 #   endif
 #endif
 
-#if defined(HAVE_XDR_INT) && (defined(HAVE_RPC_XDR_H) || defined(MOLDY_SHIPPED_XDR))
+#if defined(HAVE_RPC_XDR_H) || defined(MOLDY_SHIPPED_XDR)
 #   define USE_XDR
 #endif
 
