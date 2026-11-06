@@ -16,6 +16,7 @@ fi
 AC_CANONICAL_TARGET([])
 
 AM_INIT_AUTOMAKE()
+AM_MAINTAINER_MODE([disable])
 AM_CONFIG_HEADER(config.h)
 
 dnl Checks for programs.
