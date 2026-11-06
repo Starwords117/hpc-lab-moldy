@@ -1,6 +1,6 @@
 # HPC 多核优化练习 · Moldy
 
-> 进阶题：给一个 1990 年代的经典分子动力学程序做多核优化（含数据竞争陷阱）。
+> 进阶题：给一个 1990 年代的经典分子动力学程序做多核优化。
 
 ## 背景
 
@@ -28,9 +28,9 @@ git clone <本仓库 URL> && cd hpc-lab-moldy/src
 三个算例（都在 `cases/` 下，冒烟 → 自测 → 全量）：
 
 ```bash
-cd ../cases/smoke     && ../../src/moldy control.smoke   > run.out 2>run.err   # ~17 s
-cd ../cases/selftest  && ../../src/moldy control.selftest > run.out 2>run.err  # ~60 s
-cd ../cases/baseline  && ../../src/moldy control.baseline > run.out 2>run.err  # 参考机器 ≈5 min
+cd ../cases/smoke     && ../../src/moldy control.smoke   > run.out 2>run.err   # 参考机器 ~17 s
+cd ../cases/selftest  && ../../src/moldy control.selftest > run.out 2>run.err  # 参考机器 ~60 s
+cd ../cases/baseline  && ../../src/moldy control.baseline > run.out 2>run.err  # 参考机器 ≈5 min（普通笔记本 ≈8 min）
 ```
 
 ## 正确性判据
@@ -41,7 +41,7 @@ MD 是混沌系统：浮点求和顺序一变，微观轨迹就会发散——�
 cd cases/baseline && python3 ../../scripts/verify.py run.out ../../baseline/baseline_2048x80k.out
 ```
 
-脚本自动跳过时间戳页眉，按输出分区容差比较：**滚动平均**（主判据，|Δ|≤30 或 1%）、**标准差块**、**RDF 表**（|Δ|≤0.15），瞬时能量/压力块只做防崩坏粗检（混沌轨迹对浮点顺序天然敏感——这正是并行化要理解的现象）。控制回显与 Timestep 头必须逐字节一致；`--strict` 用于核对同机串行重建的逐位一致。
+脚本自动跳过时间戳页眉，按输出分区做容差比较：**滚动平均块**（主判据）与运行结束的 **Average values 总结块**（按各量自带的标准差定标，并带 1% 相对下限）、**标准差块**、**RDF 表**均有各自的容差带；瞬时能量/压力块只做防崩坏粗检——混沌轨迹对浮点顺序天然敏感，这正是并行化要理解的核心现象。控制回显与 Timestep 头必须逐字节一致；`--strict` 用于核对同机串行重建的逐位一致。具体容差值见脚本头部注释。
 
 ## 计时与提交
 
