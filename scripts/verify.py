@@ -15,8 +15,8 @@
 
 容差默认值(按输出分区):
     rolling avg : |a-b| <= max(45, 1e-2 * max|a|,|b|)
-    总结块("X = v +/- s") : |a-b| <= max(10, 2.5*(s_student+s_ref))
-                  -- 按各量自身涨落定标, Virial 等高噪声量自动放宽
+    总结块("X = v +/- s") : |a-b| <= max(10, 2.12*sqrt(s1^2+s2^2))
+                  -- 均值差的 3σ 口径(保守按 4 个平均窗口), Virial 等高噪声量自动放宽
     stddev      : |a-b| <= max(10, 5e-2 * max|a|,|b|)
     instantaneous: |a-b| <= max(200, 5e-2 * max|a|,|b|)
     RDF rows    : |a-b| <= max(0.15, 5e-2 * max|a|,|b|)
@@ -124,7 +124,8 @@ def main():
                   (i, k, x, y))
             sys.exit(1)
         if k == "avgsum":
-            tol_abs = max(10.0, 2.5 * (_sigma_of(x) + _sigma_of(y)))
+            s1, s2 = _sigma_of(x), _sigma_of(y)
+            tol_abs = max(10.0, 2.12 * (s1 * s1 + s2 * s2) ** 0.5)
             tol_rel = 0.0
         else:
             tol_abs, tol_rel = (RDF_ABS, RDF_REL) if k == "rdf" else MARKERS[
