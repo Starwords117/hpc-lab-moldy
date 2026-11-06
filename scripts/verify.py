@@ -77,10 +77,14 @@ def load(path):
 
 def _isnum(t):
     try:
-        float(t)
+        float(t.rstrip(",;:"))      # 数字可带尾标点, 如 "16.535,"
         return True
     except ValueError:
         return False
+
+
+def _num(t):
+    return float(t.rstrip(",;:"))
 
 
 def main():
@@ -117,7 +121,7 @@ def main():
                     print("FAIL: 第 %d 行不一致[%s]: %s vs %s" % (i, k, us, vs))
                     sys.exit(1)
                 continue
-            u, v = float(us), float(vs)
+            u, v = _num(us), _num(vs)
             dev = abs(u - v)
             if a.strict and dev > 0:
                 print("FAIL(strict): 第 %d 行数值逐位不一致: %s vs %s" % (i, us, vs))
