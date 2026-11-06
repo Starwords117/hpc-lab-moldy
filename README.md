@@ -9,7 +9,7 @@ Moldy 是英国 CCP5 联合体 1990 年代起发布的经典分子动力学代�
 ## 你的任务
 
 1. 编译并跑出基线（见"快速开始"）；
-2. 用 `perf` / `gprof` 找出热点，把剖析证据写进报告；
+2. 找出热点，把定位证据写进报告（Linux 推荐 `perf` / `gprof` 剖析；任何平台也可以用**计时代码插桩**——在主要函数/循环外打时间戳统计耗时占比——或代码结构分析代替）；
 3. 做多核优化（OpenMP / std::thread），**物理结果必须保持统计一致**（见判据）；
 4. 测量 1 / 2 / 4 / 8 线程加速比，提交代码 diff + 优化报告。
 
@@ -17,7 +17,7 @@ Moldy 是英国 CCP5 联合体 1990 年代起发布的经典分子动力学代�
 
 - Linux + gcc（8 核以上 CPU；16G 内存绰绰有余，本题峰值内存 < 50 MB）
 - 无任何第三方库依赖（XDR 兼容层已内置）
-- **Windows 用户**：请安装 WSL2（管理员 PowerShell 运行 `wsl --install -d Ubuntu`），在 Ubuntu 内按本文档操作——所有命令原样适用。原生 MinGW/MSYS2 未做验证，且缺少 perf，不建议
+- **Windows 用户**：推荐安装 WSL2（管理员 PowerShell 运行 `wsl --install -d Ubuntu`），在 Ubuntu 内按本文档操作——所有命令原样适用。原生 MinGW/MSYS2 未做完整验证（已知头文件问题已加固），热点定位可用计时代码插桩替代 perf，不建议作为正式环境
 
 ## 快速开始
 
@@ -51,7 +51,7 @@ cd cases/baseline && ../../scripts/bench.sh "../../src/moldy control.baseline"
 ```
 
 - 脚本跑 3 次取中位数，各次输出在 `bench_run_N.out`（第 3 次可直接喂给 `verify.py`）
-- 提交：代码 diff（或 git 分支）+ 优化报告（剖析证据、方案、加速比表、讨论）
+- 提交：代码 diff（或 git 分支）+ 优化报告（热点定位证据、方案、加速比表、讨论）
 - 报告请附 `lscpu` 输出与编译器版本
 
 ## 规则
