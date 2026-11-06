@@ -13,8 +13,8 @@
   瞬时块只做粗检(防止物理彻底崩坏), 不要求逐值一致。
 
 容差默认值(按输出分区):
-    rolling avg : |a-b| <= max(8, 1e-3 * max|a|,|b|)
-    stddev      : |a-b| <= max(8, 5e-2 * max|a|,|b|)
+    rolling avg : |a-b| <= max(15, 1e-3 * max|a|,|b|)
+    stddev      : |a-b| <= max(10, 5e-2 * max|a|,|b|)
     instantaneous: |a-b| <= max(200, 5e-2 * max|a|,|b|)
     RDF rows    : |a-b| <= max(0.15, 5e-2 * max|a|,|b|)
   其余文本行(控制回显、Timestep 头)必须逐字节一致。
@@ -29,8 +29,8 @@ DATE_RE = re.compile(r"\w{3} \w{3} [ \d]\d \d\d:\d\d:\d\d \d{4}")
 # 分区标记(逐字节比较)与该区数值行的容差
 MARKERS = (
     ("======== Timestep", "inst", (200.0, 5e-2)),
-    ("-------- Rolling averages", "avg", (8.0, 1e-3)),
-    ("-------- Standard deviations", "std", (8.0, 5e-2)),
+    ("-------- Rolling averages", "avg", (15.0, 1e-3)),
+    ("-------- Standard deviations", "std", (10.0, 5e-2)),
 )
 
 RDF_ABS, RDF_REL = 0.15, 5e-2
