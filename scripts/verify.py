@@ -10,10 +10,12 @@
     * Rolling averages (滚动平均)      -- 主要判据
     * Standard deviations (标准差)     -- 涨落幅度一致
     * RDF 表 (径向分布函数)            -- 结构判据
+    * 结尾 Average values 总结块       -- 全程平均, 同滚动平均容差
   瞬时块只做粗检(防止物理彻底崩坏), 不要求逐值一致。
 
 容差默认值(按输出分区):
     rolling avg : |a-b| <= max(30, 1e-2 * max|a|,|b|)
+                  (含结尾 "X = num +/- num" 总结块, 同级容差)
     stddev      : |a-b| <= max(10, 5e-2 * max|a|,|b|)
     instantaneous: |a-b| <= max(200, 5e-2 * max|a|,|b|)
     RDF rows    : |a-b| <= max(0.15, 5e-2 * max|a|,|b|)
@@ -25,6 +27,8 @@ import re
 import sys
 
 DATE_RE = re.compile(r"\w{3} \w{3} [ \d]\d \d\d:\d\d:\d\d \d{4}")
+# 结尾 Average values 总结块行, 形如 "Trans KE = 892.24 +/- 16.384  kJ/mol"
+AVG_SUM_RE = re.compile(r"=\s*-?\d[\d.eE+-]*\s*\+/-\s*-?\d[\d.eE+-]*")
 
 # 分区标记(逐字节比较)与该区数值行的容差
 MARKERS = (
@@ -59,7 +63,10 @@ def load(path):
                 kinds.append("text")
                 continue
             toks = s.split()
-            if toks and all(_isnum(t) for t in toks):
+            if AVG_SUM_RE.search(s):
+                lines.append(s)
+                kinds.append("avg")
+            elif toks and all(_isnum(t) for t in toks):
                 lines.append(s)
                 kinds.append(section)
             else:
@@ -105,6 +112,11 @@ def main():
         tol_abs, tol_rel = (RDF_ABS, RDF_REL) if k == "rdf" else MARKERS[
             [m[1] for m in MARKERS].index(k)][2]
         for us, vs in zip(tx, ty):
+            if not (_isnum(us) and _isnum(vs)):
+                if us != vs:            # 混合行中的非数值 token 须逐字一致
+                    print("FAIL: 第 %d 行不一致[%s]: %s vs %s" % (i, k, us, vs))
+                    sys.exit(1)
+                continue
             u, v = float(us), float(vs)
             dev = abs(u - v)
             if a.strict and dev > 0:
