@@ -17,6 +17,7 @@ Moldy 是英国 CCP5 联合体 1990 年代起发布的经典分子动力学代�
 
 - Linux + gcc（8 核以上 CPU；16G 内存绰绰有余，本题峰值内存 < 50 MB）
 - 无任何第三方库依赖（XDR 兼容层已内置）
+- 无GPU依赖
 - **Windows 用户**：推荐安装 WSL2（管理员 PowerShell 运行 `wsl --install -d Ubuntu`），在 Ubuntu 内按本文档操作——所有命令原样适用。原生 MinGW/MSYS2 未做完整验证（已知头文件问题已加固），热点定位可用计时代码插桩替代 perf，不建议作为正式环境
 
 ## 快速开始
